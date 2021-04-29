@@ -1,13 +1,6 @@
 /*Pari e Dispari:
 
 */
-//L’utente sceglie pari o dispari e inserisce un numero da 1 a 5.
-var scelta = prompt('scegli: pari o dispari?').toLocaleLowerCase();
-console.log(scelta);
-var numUtente = Number(prompt('inserisci un numero da 1 a 5'));
-console.log(numUtente);
-
-//Generiamo un numero random (sempre da 1 a 5) per il computer (usando una funzione).
 
 /**
  * ## Genera numeri random
@@ -19,14 +12,6 @@ console.log(numUtente);
 function numRandom(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
-
-var numPC = numRandom(1,5);
-console.log(numPC);
-
-
-//Sommiamo i due numeri Stabiliamo se la somma dei due numeri è pari o dispari (usando una funzione)
-var sum = numPC + numUtente;
-console.log(sum);
 
 /**
  * ## pari o dispari
@@ -42,13 +27,41 @@ function isPari(numero){
     return 'dispari';
 }
 
-var result = isPari(sum);
-console.log(result);
+var play = true;
+while (play) {
+    //L’utente sceglie pari o dispari e inserisce un numero da 1 a 5.
+    var scelta = prompt('scegli: pari o dispari?').toLocaleLowerCase();
+    console.log(scelta);
+    var numUtente = Number(prompt('inserisci un numero da 1 a 5'));
+    console.log(numUtente);
 
-//Dichiariamo chi ha vinto.
+    //Generiamo un numero random (sempre da 1 a 5) per il computer (usando una funzione).
+    var numPC = numRandom(1,5);
+    console.log(numPC);
 
-if (scelta == result){      
-    alert('hai vinto!!')
-   } else{
-      alert('peccato hai perso, ritenta')
-    }
+    //Sommiamo i due numeri Stabiliamo se la somma dei due numeri è pari o dispari (usando una funzione)
+    var sum = numPC + numUtente;
+    console.log(sum);
+    var result = isPari(sum);
+    console.log(result);
+
+    //Dichiariamo chi ha vinto.
+    if (scelta == result){      
+        alert(`
+        numero PC: ${numPC}
+        il tuo numero: ${numUtente} 
+        la tua scelta: ${scelta}
+        hai vinto!!`)
+    } else{
+          alert(`
+            numero PC: ${numPC}
+            il tuo numero: ${numUtente} 
+            la tua scelta: ${scelta}
+            peccato hai perso, ritenta`)
+        }
+    
+    play = confirm('vuoi continuare a giocare?');
+
+}
+
+alert('GAME OVER');
